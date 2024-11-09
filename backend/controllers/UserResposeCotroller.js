@@ -6,11 +6,7 @@ const saveData = async (req, res) => {
 
     const userResponseFound = await UserFormResponse.findOne({ email: data.email });
     if (userResponseFound) {
-<<<<<<< HEAD
       return res.status(400).json({ message: "User data already exists." });
-=======
-      return res.status(404).json({ message: "User data already exists." });
->>>>>>> 41ec8a4 (saveData controller error resolved)
     }
     const newUserResponse = new UserFormResponse({
       email: data.email,
