@@ -2,8 +2,7 @@ import Image from "next/image";
 import { FiArrowUpLeft, FiArrowUpRight } from "react-icons/fi";
 import React, { useEffect } from "react";
 
-const FormPhaseTwo = ({ value, setValue, handleSubmit }) => {
-  useEffect(() => {}, []);
+const FormPhaseTwo = ({ value, setValue, handleSubmit, setPhase }) => {
 
   return (
     <div className="w-full max-w-7xl space-y-5">

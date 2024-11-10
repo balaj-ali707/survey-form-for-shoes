@@ -2,11 +2,12 @@
 import FormPhaseOne from "@/components/FormPhaseOne";
 import FormPhaseThree from "@/components/FormPhaseThree";
 import FormPhaseTwo from "@/components/FormPhaseTwo";
+import Thankyou from "@/components/Thankyou";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
-  const [formPhase, setFormPhase] = useState(3);
+  const [formPhase, setFormPhase] = useState(4);
   const [email, setEmail] = useState("");
   const [progress, setProgress] = useState({
     step1: "",
@@ -67,6 +68,7 @@ export default function Home() {
           handleSubmit={handleSubmit}
         />
       )}
+      {formPhase === 4 && <Thankyou setPhase={setFormPhase} />}
     </div>
   );
 }
