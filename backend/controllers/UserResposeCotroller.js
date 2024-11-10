@@ -8,7 +8,6 @@ const saveData = async (req, res) => {
     if (userResponseFound) {
       return res.status(400).json({ message: "User data already exists." });
     }
-
     const newUserResponse = new UserFormResponse({
       email: data.email,
       first_question: data.progress.step1,
