@@ -20,7 +20,7 @@ export async function POST(req) {
 
       return NextResponse.json({ data }, { status: 200 });
     } else {
-      
+
       const status = phase === 3 ? "completed" : "in-progress";
       const { data, error } = await supabase
         .from("user_form_data")
@@ -43,13 +43,15 @@ export async function GET(req) {
   const { searchParams } = new URL(req.url); // Create a URL object to access query params
   const email = searchParams.get("email"); // Get the "email" query parameter
 
+  console.log(email)
   const { data, error } = await supabase
     .from("user_form_data")
     .select("*")
     .eq("email", email);
 
+  console.log(data)
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-  return NextResponse.json({ data }, { status: 200 });
+  return NextResponse.json({ data: data[0] }, { status: 200 });
 }

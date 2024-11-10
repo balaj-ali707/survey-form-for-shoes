@@ -4,10 +4,11 @@ import FormPhaseThree from "@/components/FormPhaseThree";
 import FormPhaseTwo from "@/components/FormPhaseTwo";
 import Thankyou from "@/components/Thankyou";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [formPhase, setFormPhase] = useState(4);
+
+  const [formPhase, setFormPhase] = useState(1);
   const [email, setEmail] = useState("");
   const [progress, setProgress] = useState({
     step1: "",
@@ -17,6 +18,39 @@ export default function Home() {
       price: "-1",
     },
   });
+
+  const fetchDetails = async (email) => {
+    try {
+
+      const res = await fetch(`/api/supabase/?email=${email}`, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+      const response = await res.json()
+
+      console.log(response)
+      if(res.ok) {
+        setEmail(response.data.email)
+        setProgress(response.data.progress)
+        setFormPhase(parseInt(response.data.phase))
+      }
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    const email = localStorage.getItem("email")
+    if(email) {
+      setEmail(email)
+      fetchDetails(email)
+    }
+  }, [])
+  
+
+  
 
   const onProgressChange = (field, value, subField, subFieldValue) => {
     console.log(field, value, subField, subFieldValue)
@@ -36,9 +70,31 @@ export default function Home() {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
-      setFormPhase(formPhase + 1);
+
+      localStorage.setItem("email", email)
+      const data = {
+        email,
+        progress,
+        phase: formPhase + 1
+      }
+      const res = await fetch(`/api/supabase`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+
+      const response = await res.json()
+
+      if(res.ok) {
+        setFormPhase(formPhase + 1)
+      } else {
+        throw new Error(response.error)
+      }
     } catch (error) {
       console.error("Error: ", error);
     }

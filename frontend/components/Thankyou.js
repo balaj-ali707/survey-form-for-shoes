@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FiArrowUpLeft, FiArrowUpRight } from "react-icons/fi";
 import React from "react";
 
-const Thankyou = () => {
+const Thankyou = ({ setPhase }) => {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl max-h-dvh h-full mx-auto p-6 bg-transparent rounded-lg shadow-md space-y-6 lg:space-y-0 lg:space-x-6">
       {/* Section 1: Image */}

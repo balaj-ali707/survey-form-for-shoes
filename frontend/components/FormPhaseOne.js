@@ -12,6 +12,7 @@ const FormPhaseOne = ({ value, setValue, handleSubmit }) => {
             width={1000}
             height={1000}
             src={"/assets/img/arrow-union.png"}
+            alt="arrow-union"
             className="w-80 h-auto absolute -top-24 left-20 opacity-50"
           />
           <Image
@@ -58,7 +59,7 @@ const FormPhaseOne = ({ value, setValue, handleSubmit }) => {
               value={value}
               onChange={({ target }) => setValue(target.value)}
               required
-              className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 border border-gray-300 rounded-full text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <button
