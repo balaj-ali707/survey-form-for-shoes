@@ -55,3 +55,33 @@ export async function GET(req) {
   }
   return NextResponse.json({ data: data[0] }, { status: 200 });
 }
+
+export async function DELETE(req) {
+  const { searchParams } = new URL(req.url);
+  const email = searchParams.get("email");
+
+  if (!email) {
+    return NextResponse.json(
+      { error: "Email parameter is required" },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const { error } = await supabase
+      .from("user_form_data")
+      .delete()
+      .eq("email", email);
+
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    return NextResponse.json(
+      { message: `User with email ${email} deleted successfully` },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+}

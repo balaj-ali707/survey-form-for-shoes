@@ -3,6 +3,34 @@ import { FiArrowUpLeft, FiArrowUpRight } from "react-icons/fi";
 import React from "react";
 
 const Thankyou = ({ setPhase }) => {
+
+  const deleteSupabaseData = async () => {
+    try {
+      const email = localStorage.getItem("email")
+
+      const res = await fetch(`/api/supabase/?email=${email}`, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json"
+        }
+      })
+
+      const response = await res.json()
+
+      if(res.ok) {
+        console.log(response.message)
+      } else {
+        throw new Error(response.error)
+      }
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+
+  useEffect(() => {
+    deleteSupabaseData()
+  }, [])
+  
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl max-h-dvh h-full mx-auto p-6 bg-transparent rounded-lg shadow-md space-y-6 lg:space-y-0 lg:space-x-6">
       {/* Section 1: Image */}
