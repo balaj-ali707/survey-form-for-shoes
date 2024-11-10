@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FiArrowUpLeft, FiArrowUpRight } from "react-icons/fi";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Thankyou = ({ setPhase }) => {
 
