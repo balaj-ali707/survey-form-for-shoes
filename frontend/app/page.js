@@ -1,11 +1,12 @@
 "use client";
 import FormPhaseOne from "@/components/FormPhaseOne";
+import FormPhaseThree from "@/components/FormPhaseThree";
 import FormPhaseTwo from "@/components/FormPhaseTwo";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
-  const [formPhase, setFormPhase] = useState(2);
+  const [formPhase, setFormPhase] = useState(3);
   const [email, setEmail] = useState("");
   const [progress, setProgress] = useState({
     step1: "",
@@ -17,6 +18,7 @@ export default function Home() {
   });
 
   const onProgressChange = (field, value, subField, subFieldValue) => {
+    console.log(field, value, subField, subFieldValue)
     if (field === "step1") {
       setProgress((prevDetails) => {
         const newDetails = { ...prevDetails };
@@ -25,6 +27,7 @@ export default function Home() {
       });
     } else if (field === "step2") {
       setProgress((prevDetails) => {
+        
         const newDetails = { ...prevDetails };
         newDetails.step2[subField] = subFieldValue;
         return newDetails;
@@ -34,7 +37,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
-      setFormPhase(formPhase + 1)
+      setFormPhase(formPhase + 1);
     } catch (error) {
       console.error("Error: ", error);
     }
@@ -54,6 +57,14 @@ export default function Home() {
           setValue={onProgressChange}
           handleSubmit={handleSubmit}
           setPhase={setFormPhase}
+        />
+      )}
+      {formPhase === 3 && (
+        <FormPhaseThree
+          value={progress}
+          setValue={onProgressChange}
+          setPhase={setFormPhase}
+          handleSubmit={handleSubmit}
         />
       )}
     </div>

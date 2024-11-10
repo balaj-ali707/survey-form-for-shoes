@@ -34,3 +34,16 @@ body {
 .custom-radio:checked {
   background: radial-gradient(circle, #4379f4 50%, transparent 51%);
 }
+
+.custom-radio-black {
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  border: 2px solid #000;
+  background-color: #000;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.custom-radio-black:checked {
+  background: radial-gradient(circle, #4379f4 50%, transparent 51%);
+}
