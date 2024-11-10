@@ -4,6 +4,11 @@ const saveData = async (req, res) => {
   try {
     const data = req.body;
 
+    const userResponseFound = await UserFormResponse.findOne({ email: data.email });
+    if (!userResponseFound) {
+      return res.status(404).json({ message: "User data already exists." });
+    }
+
     const newUserResponse = new UserFormResponse({
       email: data.email,
       first_question: data.progress.step1,
@@ -25,7 +30,7 @@ const getData = async (req, res) => {
 
     const userResponseFound = await UserFormResponse.findOne({ email: email });
     if (!userResponseFound) {
-      res.status(404).json({ message: "No user response found" });
+      return res.status(404).json({ message: "No user response found" });
     }
 
     res
