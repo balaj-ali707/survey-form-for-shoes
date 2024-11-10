@@ -6,6 +6,9 @@ const app = express();
 app.use(cors());
 
 require("./db/connection")
+const userRoutes = require("./routes/UserResponseRoutes")
+
+app.use("/user-response", userRoutes)
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
