@@ -14,7 +14,7 @@ const FormDataSchema = new mongoose.Schema({
         type: Object,
         required: true
     }
-})
+}, {timestamps: true})
 
 const UserFormResponse = mongoose.model("user_form_responses", FormDataSchema)
 
