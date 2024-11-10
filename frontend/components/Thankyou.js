@@ -40,14 +40,14 @@ const Thankyou = () => {
           <button
             type="button"
             onClick={() => setPhase(3)}
-            className="text-black font-bold bg-[#EDB6D2] p-7 rounded-full"
+            className="text-black font-bold bg-[#EDB6D2] p-7 rounded-3xl"
           >
             <FiArrowUpLeft className="inline-flex mr-5" /> Back
           </button>
           <button
             type="button"
             onClick={() => setPhase(1)}
-            className="text-black font-bold bg-[#BBE94A] p-7 rounded-full"
+            className="text-black font-bold bg-white p-7 rounded-3xl"
           >
             Back To Home <FiArrowUpRight className="inline-flex ml-5" />
           </button>
