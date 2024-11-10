@@ -1,14 +1,8 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 
-const FormPhaseOne = ({ setPhase }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    setPhase(2); // Example: Move to next phase after submit
-  };
-
+const FormPhaseOne = ({ value, setValue, handleSubmit }) => {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-7xl max-h-dvh h-full mx-auto p-6 bg-transparent rounded-lg shadow-md space-y-6 lg:space-y-0 lg:space-x-6">
       {/* Section 1: Image */}
@@ -50,8 +44,8 @@ const FormPhaseOne = ({ setPhase }) => {
             <h3 className="font-semibold text-xl font-sans mb-7">Welcome!</h3>
             <p className="text-base font-sans">
               We're excited to hear your thoughts, ideas, and insights. Don't
-              worry about right or wrong answers — just speak from the heart. Your
-              genuine feedback is invaluable to us!
+              worry about right or wrong answers — just speak from the heart.
+              Your genuine feedback is invaluable to us!
             </p>
           </div>
           <div className="w-full">
@@ -61,6 +55,8 @@ const FormPhaseOne = ({ setPhase }) => {
             <input
               type="email"
               placeholder="Enter Email Address"
+              value={value}
+              onChange={({ target }) => setValue(target.value)}
               required
               className="w-full p-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -70,7 +66,7 @@ const FormPhaseOne = ({ setPhase }) => {
             className="w-full flex items-center font-sans justify-between bg-[#BBE94A] text-white py-5 px-10 rounded-full font-semibold hover:bg-blue-700 transition-colors"
           >
             <h3 className="text-black font-bold">Start Survey</h3>
-            <FiArrowUpRight className="text-xl text-black"/>
+            <FiArrowUpRight className="text-xl text-black" />
           </button>
         </form>
       </div>
