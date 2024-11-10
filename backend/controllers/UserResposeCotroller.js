@@ -5,7 +5,7 @@ const saveData = async (req, res) => {
     const data = req.body;
 
     const userResponseFound = await UserFormResponse.findOne({ email: data.email });
-    if (!userResponseFound) {
+    if (userResponseFound) {
       return res.status(404).json({ message: "User data already exists." });
     }
 
