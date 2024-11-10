@@ -26,7 +26,7 @@ const saveData = async (req, res) => {
 
 const getData = async (req, res) => {
   try {
-    const email = req.query;
+    const { email } = req.query;
 
     const userResponseFound = await UserFormResponse.findOne({ email: email });
     if (!userResponseFound) {
