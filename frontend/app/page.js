@@ -41,17 +41,20 @@ export default function Home() {
 
   const fetchMongoDetails = async (email) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_HOST}/user-response/get-data/?email=${email}`, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_HOST}/user-response/get-data/?email=${email}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
       const response = await res.json();
 
       console.log(response);
       if (res.ok) {
-        setFormPhase(4)
+        setFormPhase(4);
       }
     } catch (error) {
       console.error(error.message);
@@ -62,7 +65,7 @@ export default function Home() {
     const email = localStorage.getItem("email");
     if (email) {
       setEmail(email);
-      fetchMongoDetails(email)
+      fetchMongoDetails(email);
       fetchDetails(email);
     }
   }, []);
@@ -94,6 +97,10 @@ export default function Home() {
         phase: formPhase + 1,
       };
 
+      if (formPhase === 1) {
+        fetchMongoDetails(email);
+      }
+
       if (formPhase === 3) {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER_HOST}/user-response/save-data`,
@@ -106,14 +113,15 @@ export default function Home() {
           }
         );
 
-        const response = await res.json()
+        const response = await res.json();
 
-        if(res.ok) {
-          setFormPhase(4)
-          console.log(response.message)
-          return
+        if (res.ok) {
+          setFormPhase(4);
+          localStorage.removeItem("email");
+          console.log(response.message);
+          return;
         } else {
-          throw new Error(response.error)
+          throw new Error(response.error);
         }
       }
 
