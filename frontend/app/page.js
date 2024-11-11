@@ -145,7 +145,7 @@ export default function Home() {
     }
   };
   return (
-    <div className="h-screen flex flex-row items-center justify-center bg-gradient-to-r from-[#4D4D4D] to-[#010101]">
+    <div className="h-screen flex flex-row items-center justify-center bg-gradient-to-br from-[#4D4D4D] to-[#010101]">
       {formPhase === 1 && (
         <FormPhaseOne
           value={email}
