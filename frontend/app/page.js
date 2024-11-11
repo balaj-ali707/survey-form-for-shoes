@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [formPhase, setFormPhase] = useState(2);
+  const [formPhase, setFormPhase] = useState(3);
   const [email, setEmail] = useState("");
   const [progress, setProgress] = useState({
     step1: "",
