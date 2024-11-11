@@ -44,7 +44,7 @@ const FormPhaseOne = ({ value, setValue, handleSubmit }) => {
           <div className="bg-[#EDB6D2] p-10 rounded-[35px] text-black ">
             <h3 className="font-semibold text-xl font-sans mb-7">Welcome!</h3>
             <p className="text-base font-sans">
-              We're excited to hear your thoughts, ideas, and insights. Don't
+              We&apos;re excited to hear your thoughts, ideas, and insights. Don&apos;t
               worry about right or wrong answers — just speak from the heart.
               Your genuine feedback is invaluable to us!
             </p>
